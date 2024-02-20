@@ -1,5 +1,6 @@
 package com.abhi.userpostservice.service.impl;
 
+import com.abhi.userpostservice.exception.UserNotFoundException;
 import com.abhi.userpostservice.model.User;
 import com.abhi.userpostservice.service.IUserDAOService;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,8 @@ public class UserDAOServiceImpl implements IUserDAOService {
 
     @Override
     public User findUserById(Integer id) {
-        return users.stream().filter(getUserPredicate(id)).findFirst().orElseThrow(() -> new RuntimeException("User not found"));
+        return users.stream().filter(getUserPredicate(id)).findFirst()
+                .orElseThrow(() -> new UserNotFoundException("User not found. Id: " + id));
     }
 
     @Override
