@@ -2,6 +2,7 @@ package com.abhi.userpostservice.controller;
 
 import com.abhi.userpostservice.model.User;
 import com.abhi.userpostservice.service.IUserDAOService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<Object> createUser(@RequestBody User user) {
+    public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
         User userResult = userDAOServiceImpl.createUser(user);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userResult.getId()).toUri();
