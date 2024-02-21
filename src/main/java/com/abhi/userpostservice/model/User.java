@@ -1,6 +1,5 @@
 package com.abhi.userpostservice.model;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -14,8 +13,8 @@ import java.time.LocalDate;
 @ToString
 public class User {
     private Integer id;
-    @Size(min = 2, message = "Sorry, the user name must be at least 2 characters long.")
+    @Size(min = 2, message = "ERROR_USER_NAME")
     private String name;
-    @Past(message = "Sorry, the user birth date must be in the past.")
+    @Past(message = "ERROR_USER_BIRTHDATE")
     private LocalDate birthDate;
 }
