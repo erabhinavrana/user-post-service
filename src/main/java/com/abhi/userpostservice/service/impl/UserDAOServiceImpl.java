@@ -42,4 +42,9 @@ public class UserDAOServiceImpl implements IUserDAOService {
         users.add(user);
         return user;
     }
+
+    @Override
+    public void deleteUserById(Integer id) {
+        users.removeIf(getUserPredicate(id));
+    }
 }
