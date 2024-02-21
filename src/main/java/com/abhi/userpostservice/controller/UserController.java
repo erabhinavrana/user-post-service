@@ -4,12 +4,16 @@ import com.abhi.userpostservice.model.User;
 import com.abhi.userpostservice.service.IUserDAOService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RequiredArgsConstructor
 @RestController
@@ -24,8 +28,9 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User findUserById(@PathVariable Integer id) {
-        return userDAOServiceImpl.findUserById(id);
+    public EntityModel<User> findUserById(@PathVariable Integer id) {
+        return EntityModel.of(userDAOServiceImpl.findUserById(id))
+                .add(WebMvcLinkBuilder.linkTo(methodOn(this.getClass()).findAll()).withRel("all-users"));
     }
 
     @PostMapping("/users")
