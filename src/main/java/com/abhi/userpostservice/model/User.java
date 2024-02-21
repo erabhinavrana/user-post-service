@@ -1,5 +1,7 @@
 package com.abhi.userpostservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -17,4 +19,9 @@ public class User {
     private String name;
     @Past(message = "ERROR_USER_BIRTHDATE")
     private LocalDate birthDate;
+    @JsonProperty("gender")
+    private String genderDtls;
+    @JsonIgnore
+    @JsonProperty("marital_status")
+    private String maritalStatus;
 }

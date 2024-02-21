@@ -16,9 +16,9 @@ public class UserDAOServiceImpl implements IUserDAOService {
     private static final List<User> users = new ArrayList<>();
 
     static {
-        users.add(new User(11, "Ahmed", LocalDate.now().minusYears(25)));
-        users.add(new User(22, "Azhar", LocalDate.now().minusYears(30)));
-        users.add(new User(33, "Adeel", LocalDate.now().minusYears(35)));
+        users.add(new User(11, "Ahmed", LocalDate.now().minusYears(25), "Male", "Married"));
+        users.add(new User(22, "Alia", LocalDate.now().minusYears(30), "Female", "Single"));
+        users.add(new User(33, "Sofia", LocalDate.now().minusYears(35), "Female", "Married"));
     }
 
     private static Predicate<User> getUserPredicate(Integer id) {
