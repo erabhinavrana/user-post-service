@@ -39,8 +39,6 @@ public class UserPostExceptionHandlerAdvice extends ResponseEntityExceptionHandl
 
     @Override
     public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        //String validationMessages = Objects.requireNonNull(ex.getFieldErrors()).stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining("  "));
-
         String validationMessages = Objects.requireNonNull(ex.getFieldErrors()).stream().map(fieldError -> messageSource.getMessage(Objects.requireNonNull(fieldError.getDefaultMessage()), null, LocaleContextHolder.getLocale())).collect(Collectors.joining());
 
         return new ResponseEntity<>(new ErrorDetails(validationMessages, request.getDescription(false), LocalDateTime.now()), HttpStatus.BAD_REQUEST);
