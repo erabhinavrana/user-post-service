@@ -1,18 +1,20 @@
 package com.abhi.userpostservice.model;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.ToString;
 
 import java.time.LocalDate;
 
+@JsonFilter("CustomUserDtlsFilter")
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @AllArgsConstructor
-@ToString
 public class User {
     private Integer id;
     @Size(min = 2, message = "ERROR_USER_NAME")
